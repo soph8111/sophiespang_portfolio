@@ -3,7 +3,7 @@ import ProjectCard from "./ProjectCard";
 
 function ProjectGallery() {
   return (
-    <div>
+    <div className="flex h-dvh items-center gap-6 px-6">
       {projects.map((project) => (
         <ProjectCard key={project.slug} project={project} />
       ))}

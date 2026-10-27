@@ -2,7 +2,7 @@ import ProjectGallery from "../components/ProjectGallery";
 
 function HomePage() {
   return (
-    <section>
+    <section className="overflow-hidden">
       <ProjectGallery />
     </section>
   );
