@@ -4,15 +4,15 @@ import Footer from "../components/Footer";
 
 function RootLayout() {
   return (
-    <>
+    <div className="min-h-screen">
       <Header />
 
-      <main>
+      <main className="min-h-screen">
         <Outlet />
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }
 
