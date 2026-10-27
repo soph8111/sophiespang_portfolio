@@ -27,7 +27,7 @@ export const projects: Project[] = [
     media: [],
     gallery: {
       size: "small",
-      y: 14,
+      y: 8,
     },
   },
 
@@ -72,7 +72,7 @@ export const projects: Project[] = [
     media: [],
     gallery: {
       size: "small",
-      y: -6,
+      y: -10,
     },
   },
 ];
