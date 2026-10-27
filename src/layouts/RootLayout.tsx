@@ -6,17 +6,19 @@ import { projects } from "../data/projects";
 function RootLayout() {
   const { pathname } = useLocation();
 
+  const isHomePage = pathname === "/";
+
   const isProjectPage = projects.some(({ slug }) => pathname === `/${slug}`);
 
   return (
     <div className="min-h-screen">
-      <Header collapsed={isProjectPage} />
+      <Header collapsed={isProjectPage} animateIn={isHomePage} />
 
       <main className="min-h-screen">
         <Outlet />
       </main>
 
-      <Footer collapsed={isProjectPage} />
+      <Footer collapsed={isProjectPage} animateIn={isHomePage} />
     </div>
   );
 }

@@ -3,11 +3,20 @@ import { NavLink } from "react-router-dom";
 
 interface HeaderProps {
   collapsed: boolean;
+  animateIn?: boolean;
 }
 
-function Header({ collapsed }: HeaderProps) {
+function Header({ collapsed, animateIn }: HeaderProps) {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex items-start justify-between px-6 py-4">
+    <motion.header
+      initial={animateIn ? { opacity: 0, y: -20 } : false}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.8,
+        ease: [0.76, 0, 0.24, 1],
+      }}
+      className="fixed inset-x-0 top-0 z-50 flex items-start justify-between px-6 py-4"
+    >
       <NavLink to="/" className="flex text-8xl font-bold uppercase text-foreground">
         <span>S</span>
 
@@ -38,7 +47,7 @@ function Header({ collapsed }: HeaderProps) {
           ABOUT
         </NavLink>
       </nav>
-    </header>
+    </motion.header>
   );
 }
 
