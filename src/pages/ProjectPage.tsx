@@ -18,7 +18,7 @@ function ProjectPage() {
   const nextProject = projects[(projectIndex + 1) % projects.length];
 
   return (
-    <motion.section initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={projectEnterTransition} className="mx-auto max-w-300 px-6 pb-32 mt-32 md:mt-45">
+    <motion.section key={project.slug} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={projectEnterTransition} className="mx-auto max-w-300 px-6 pb-32 pt-40">
       <div className="mb-20 max-w-3xl">
         <h1 className="text-6xl font-bold uppercase">{project.title}</h1>
 
@@ -44,13 +44,11 @@ function ProjectPage() {
           </div>
         )}
       </div>
-
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {project.media.map((item) => (
           <ProjectMedia key={item.src} item={item} />
         ))}
       </div>
-
       <div className="mt-15 md:ml-auto w-fit">
         <Link to={`/${nextProject.slug}`} className="group block">
           <span className="text-sm uppercase">Next project</span>
