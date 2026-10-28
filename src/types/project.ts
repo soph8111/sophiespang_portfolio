@@ -22,9 +22,11 @@ export type ProjectMedia =
       type: "image";
       src: string;
       alt: string;
+      layout?: "full" | "half";
     }
   | {
       type: "video";
       src: string;
       poster?: string;
+      layout?: "full" | "half";
     };
