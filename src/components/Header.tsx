@@ -9,8 +9,8 @@ interface HeaderProps {
 
 function Header({ collapsed, animateIn }: HeaderProps) {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex items-start justify-between px-6 py-4">
-      <NavLink to="/" className="flex overflow-hidden text-8xl font-bold uppercase text-foreground">
+    <header className="fixed inset-x-0 top-0 z-50 flex items-start justify-between px-6 py-4 bg-background md:bg-transparent">
+      <NavLink to="/" className="flex overflow-hidden text-5xl md:text-8xl font-bold uppercase text-foreground">
         <motion.span initial={animateIn ? { y: "100%" } : false} animate={{ y: 0 }} transition={animateIn ? introTransition : pageTransition}>
           S
         </motion.span>

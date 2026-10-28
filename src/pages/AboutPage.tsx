@@ -3,7 +3,7 @@ import { projectEnterTransition } from "../utils/motion";
 
 function AboutPage() {
   return (
-    <motion.section initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={projectEnterTransition} className="mx-auto max-w-300 px-6 pb-32 pt-40">
+    <motion.section initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={projectEnterTransition} className="mx-auto max-w-300 px-6 pb-32 mt-32 md:pt-40">
       <div className="grid gap-12 md:grid-cols-2">
         <div>
           <h1 className="text-6xl font-bold uppercase">About</h1>

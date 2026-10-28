@@ -22,7 +22,7 @@ function Footer({ collapsed, animateIn }: FooterProps) {
   }, []);
 
   return (
-    <footer className="fixed inset-x-0 bottom-0 z-50 flex items-end justify-between px-6 py-4">
+    <footer className="fixed inset-x-0 bottom-0 z-50 flex items-end justify-between px-6 py-4 bg-background md:bg-transparent">
       <div className="flex flex-col gap-1 text-sm font-medium">
         <a href="https://www.linkedin.com/in/sophie-feline-spang-kjeldsen/" target="_blank" rel="noreferrer" className="text-foreground">
           LinkedIn
@@ -41,7 +41,7 @@ function Footer({ collapsed, animateIn }: FooterProps) {
             x: collapsed ? distance : 0,
           }}
           transition={animateIn ? introTransition : pageTransition}
-          className="flex cursor-default text-8xl font-bold uppercase text-foreground"
+          className="flex cursor-default text-5xl md:text-8xl font-bold uppercase text-foreground"
         >
           <span ref={sRef}>S</span>
 
