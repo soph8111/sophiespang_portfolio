@@ -75,12 +75,12 @@ function ProjectGallery() {
       }
     };
 
-    viewport.addEventListener("wheel", handleWheel, {
+    window.addEventListener("wheel", handleWheel, {
       passive: false,
     });
 
     return () => {
-      viewport.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("wheel", handleWheel);
       resizeObserver.disconnect();
 
       if (animationFrame.current) {

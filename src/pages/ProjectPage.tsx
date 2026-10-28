@@ -50,11 +50,6 @@ function ProjectPage() {
           <ProjectMedia key={item.src} item={item} />
         ))}
       </div>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        {project.media.map((item) => (
-          <ProjectMedia key={item.src} item={item} />
-        ))}
-      </div>
 
       <div className="mt-15 md:ml-auto w-fit">
         <Link to={`/${nextProject.slug}`} className="group block">
