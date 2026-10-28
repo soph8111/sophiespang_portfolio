@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Portfolio project content
+src/data/projects.ts
+public/projects/
