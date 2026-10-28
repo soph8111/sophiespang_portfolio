@@ -36,7 +36,7 @@ function ProjectCard({ project, mobile = false }: ProjectCardProps) {
     >
       <article>
         <div className="overflow-hidden">
-          <img src={project.cover} alt={project.title} className={`block w-auto max-w-none object-contain transition-transform duration-500 ease-out group-hover:scale-[1.07] ${sizeClasses[project.gallery.size]}`} />
+          <img src={project.cover} alt={project.title} className={`block w-auto max-w-none object-contain transition-transform duration-500 ease-out group-hover:scale-[1.07s] ${sizeClasses[project.gallery.size]}`} />
         </div>
 
         <div className="mt-2 flex justify-between text-sm">
