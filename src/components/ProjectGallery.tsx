@@ -90,25 +90,27 @@ function ProjectGallery() {
   }, []);
 
   return (
-    <motion.div
-      ref={viewportRef}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{
-        ...galleryEnterTransition,
-      }}
-      className="h-dvh overflow-hidden"
-    >
-      <div ref={trackRef} className="flex h-full w-max items-center will-change-transform">
-        {[0, 1].map((groupIndex) => (
-          <div key={groupIndex} ref={groupIndex === 0 ? groupRef : undefined} className="flex h-full items-center gap-6 pl-6">
-            {projects.map((project) => (
-              <ProjectCard key={`${groupIndex}-${project.slug}`} project={project} />
-            ))}
-          </div>
+    <>
+      {/* Mobile */}
+      <div className="flex flex-col gap-10 px-6 pb-32 pt-36 md:hidden">
+        {projects.map((project) => (
+          <ProjectCard key={project.slug} project={project} mobile />
         ))}
       </div>
-    </motion.div>
+
+      {/* Desktop */}
+      <motion.div ref={viewportRef} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={galleryEnterTransition} className="hidden h-dvh overflow-hidden md:block">
+        <div ref={trackRef} className="flex h-full w-max items-center will-change-transform">
+          {[0, 1].map((groupIndex) => (
+            <div key={groupIndex} ref={groupIndex === 0 ? groupRef : undefined} className="flex h-full items-center gap-6 pl-6">
+              {projects.map((project) => (
+                <ProjectCard key={`${groupIndex}-${project.slug}`} project={project} />
+              ))}
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </>
   );
 }
 

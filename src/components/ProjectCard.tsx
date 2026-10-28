@@ -3,9 +3,23 @@ import type { Project } from "../types/project";
 
 interface ProjectCardProps {
   project: Project;
+  mobile?: boolean;
 }
 
-function ProjectCard({ project }: ProjectCardProps) {
+function ProjectCard({ project, mobile = false }: ProjectCardProps) {
+  if (mobile) {
+    return (
+      <Link to={`/${project.slug}`} className="block">
+        <img src={project.cover} alt={project.title} className="h-auto w-full" />
+
+        <div className="mt-2 flex justify-between">
+          <h2>{project.title}</h2>
+          <span>{project.year}</span>
+        </div>
+      </Link>
+    );
+  }
+
   const sizeClasses = {
     small: "h-[32dvh]",
     medium: "h-[42dvh]",

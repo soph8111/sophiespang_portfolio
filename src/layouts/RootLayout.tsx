@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { projects } from "../data/projects";
+import ScrollToTop from "../components/ScrollToTop";
 
 function RootLayout() {
   const { pathname } = useLocation();
@@ -23,6 +24,8 @@ function RootLayout() {
 
   return (
     <div className="min-h-screen">
+      <ScrollToTop />
+
       <Header collapsed={isInnerPage} animateIn={isInitialLoad} />
 
       <main className="min-h-screen">
