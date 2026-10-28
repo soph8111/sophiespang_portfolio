@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import { NavLink } from "react-router-dom";
+import { pageTransition, introTransition } from "../utils/motion";
 
 interface HeaderProps {
   collapsed: boolean;
@@ -8,28 +9,24 @@ interface HeaderProps {
 
 function Header({ collapsed, animateIn }: HeaderProps) {
   return (
-    <motion.header
-      initial={animateIn ? { opacity: 0, y: -20 } : false}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.8,
-        ease: [0.76, 0, 0.24, 1],
-      }}
-      className="fixed inset-x-0 top-0 z-50 flex items-start justify-between px-6 py-4"
-    >
-      <NavLink to="/" className="flex text-8xl font-bold uppercase text-foreground">
-        <span>S</span>
+    <header className="fixed inset-x-0 top-0 z-50 flex items-start justify-between px-6 py-4">
+      <NavLink to="/" className="flex overflow-hidden text-8xl font-bold uppercase text-foreground">
+        <motion.span initial={animateIn ? { y: "100%" } : false} animate={{ y: 0 }} transition={animateIn ? introTransition : pageTransition}>
+          S
+        </motion.span>
 
-        <AnimatePresence initial={false}>
+        <AnimatePresence>
           {!collapsed && (
             <motion.span
-              initial={{ clipPath: "inset(0 0 0 0)" }}
-              animate={{ clipPath: "inset(0 0 0 0)" }}
-              exit={{ clipPath: "inset(0 100% 0 0)" }}
-              transition={{
-                duration: 0.55,
-                ease: [0.76, 0, 0.24, 1],
+              initial={animateIn ? { y: "100%", clipPath: "inset(0 0 0 0)" } : { y: 0, clipPath: "inset(0 100% 0 0)" }}
+              animate={{
+                y: 0,
+                clipPath: "inset(0 0% 0 0)",
               }}
+              exit={{
+                clipPath: "inset(0 100% 0 0)",
+              }}
+              transition={animateIn ? introTransition : pageTransition}
               className="inline-block"
             >
               OPHIE
@@ -47,7 +44,7 @@ function Header({ collapsed, animateIn }: HeaderProps) {
           ABOUT
         </NavLink>
       </nav>
-    </motion.header>
+    </header>
   );
 }
 

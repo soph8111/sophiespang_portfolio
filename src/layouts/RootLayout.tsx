@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -6,19 +7,29 @@ import { projects } from "../data/projects";
 function RootLayout() {
   const { pathname } = useLocation();
 
-  const isHomePage = pathname === "/";
+  const isInnerPage = pathname === "/about" || projects.some(({ slug }) => pathname === `/${slug}`);
 
-  const isProjectPage = projects.some(({ slug }) => pathname === `/${slug}`);
+  const [isInitialLoad, setIsInitialLoad] = useState(pathname === "/");
+
+  useEffect(() => {
+    if (!isInitialLoad) return;
+
+    const timeout = setTimeout(() => {
+      setIsInitialLoad(false);
+    }, 700);
+
+    return () => clearTimeout(timeout);
+  }, [isInitialLoad]);
 
   return (
     <div className="min-h-screen">
-      <Header collapsed={isProjectPage} animateIn={isHomePage} />
+      <Header collapsed={isInnerPage} animateIn={isInitialLoad} />
 
       <main className="min-h-screen">
         <Outlet />
       </main>
 
-      <Footer collapsed={isProjectPage} animateIn={isHomePage} />
+      <Footer collapsed={isInnerPage} animateIn={isInitialLoad} />
     </div>
   );
 }

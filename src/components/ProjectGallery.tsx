@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import { projects } from "../data/projects";
 import ProjectCard from "./ProjectCard";
+import { motion } from "motion/react";
+import { galleryEnterTransition } from "../utils/motion";
 
 function ProjectGallery() {
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -88,7 +90,15 @@ function ProjectGallery() {
   }, []);
 
   return (
-    <div ref={viewportRef} className="h-dvh overflow-hidden">
+    <motion.div
+      ref={viewportRef}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        ...galleryEnterTransition,
+      }}
+      className="h-dvh overflow-hidden"
+    >
       <div ref={trackRef} className="flex h-full w-max items-center will-change-transform">
         {[0, 1].map((groupIndex) => (
           <div key={groupIndex} ref={groupIndex === 0 ? groupRef : undefined} className="flex h-full items-center gap-6 pl-6">
@@ -98,7 +108,7 @@ function ProjectGallery() {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
