@@ -24,11 +24,11 @@ function Footer({ collapsed, animateIn }: FooterProps) {
   return (
     <footer className="fixed inset-x-0 bottom-0 z-50 flex items-end justify-between px-6 py-4 bg-background md:bg-transparent">
       <div className="flex flex-col gap-1 text-sm font-medium">
-        <a href="https://www.linkedin.com/in/sophie-feline-spang-kjeldsen/" target="_blank" rel="noreferrer" className="text-foreground">
+        <a href="https://www.linkedin.com/in/sophie-feline-spang-kjeldsen/" target="_blank" rel="noreferrer" className="text-foreground transition-all duration-200 hover:font-bold">
           LinkedIn
         </a>
 
-        <a href="https://github.com/soph8111" target="_blank" rel="noreferrer" className="text-foreground">
+        <a href="https://github.com/soph8111" target="_blank" rel="noreferrer" className="text-foreground transition-all duration-200 hover:font-bold">
           GitHub
         </a>
       </div>

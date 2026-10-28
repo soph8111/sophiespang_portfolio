@@ -36,11 +36,11 @@ function Header({ collapsed, animateIn }: HeaderProps) {
       </NavLink>
 
       <nav className="flex flex-col gap-1 text-right font-medium">
-        <NavLink to="/" className="text-foreground">
+        <NavLink to="/" className="text-foreground transition-all duration-200 hover:font-bold">
           PROJECTS
         </NavLink>
 
-        <NavLink to="/about" className="text-foreground">
+        <NavLink to="/about" className="text-foreground transition-all duration-200 hover:font-bold">
           ABOUT
         </NavLink>
       </nav>

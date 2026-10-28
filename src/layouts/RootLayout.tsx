@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { projects } from "../data/projects";
 import ScrollToTop from "../components/ScrollToTop";
+import CustomCursor from "../components/CustomCursor";
 
 function RootLayout() {
   const { pathname } = useLocation();
@@ -24,6 +25,7 @@ function RootLayout() {
 
   return (
     <div className="min-h-screen">
+      <CustomCursor />
       <ScrollToTop />
 
       <Header collapsed={isInnerPage} animateIn={isInitialLoad} />
