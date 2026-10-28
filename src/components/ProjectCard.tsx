@@ -35,13 +35,13 @@ function ProjectCard({ project, mobile = false }: ProjectCardProps) {
       }}
     >
       <article>
-        <div className="overflow-hidden">
-          <img src={project.cover} alt={project.title} className={`block w-auto max-w-none object-contain transition-transform duration-500 ease-out group-hover:scale-[1.07] ${sizeClasses[project.gallery.size]}`} />
-        </div>
+        <div className="relative overflow-hidden">
+          <img src={project.cover} alt={project.title} className={`block w-auto max-w-none object-contain ${sizeClasses[project.gallery.size]}`} />
 
-        <div className="mt-2 flex justify-between text-sm">
-          <h2 className="font-medium">{project.title}</h2>
-          <span>{project.year}</span>
+          <div className="absolute inset-x-0 bottom-0 hidden translate-y-full items-center justify-between bg-foreground px-4 py-3 text-background transition-transform duration-300 ease-out group-hover:translate-y-0 md:flex">
+            <h2 className="font-medium">{project.title}</h2>
+            <span>{project.year}</span>
+          </div>
         </div>
       </article>
     </Link>

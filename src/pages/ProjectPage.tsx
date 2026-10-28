@@ -18,7 +18,7 @@ function ProjectPage() {
   const nextProject = projects[(projectIndex + 1) % projects.length];
 
   return (
-    <motion.section initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={projectEnterTransition} className="mx-auto max-w-300 px-6 pb-32 mt-32 md:pt-40">
+    <motion.section initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={projectEnterTransition} className="mx-auto max-w-300 px-6 pb-32 mt-32 md:mt-45">
       <div className="mb-20 max-w-3xl">
         <h1 className="text-6xl font-bold uppercase">{project.title}</h1>
 
