@@ -8,7 +8,11 @@ export const projects: Project[] = [
     context: "Personal Project",
     role: "Design & Development",
     description: "Example project used as a template for portfolio content.",
-    cover: "/projects/example/cover.png",
+    cover: {
+      type: "image",
+      src: "/projects/example/cover.webp",
+      alt: "Example project cover image",
+    },
     media: [
       {
         type: "image",
@@ -24,7 +28,12 @@ export const projects: Project[] = [
       size: "medium",
       y: 0,
     },
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/example/example-project",
+    liveUrl: {
+      link: "https://example.com",
+      label: "Live Demo",
+    },
+    githubUrl: {
+      link: "https://github.com/example/example-project",
+    },
   },
 ];

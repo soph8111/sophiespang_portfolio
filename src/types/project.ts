@@ -5,7 +5,7 @@ export interface Project {
   context: string;
   role: string;
   description: string;
-  cover: string;
+  cover: ProjectMedia;
   media: ProjectMedia[];
 
   gallery: {
@@ -13,8 +13,18 @@ export interface Project {
     y: number;
   };
 
-  liveUrl?: string;
-  githubUrl?: string;
+  liveUrl?: {
+    link: string;
+    label?: string;
+  };
+  githubUrl?: {
+    link: string;
+    label?: string;
+  };
+  otherUrl?: {
+    link: string;
+    label: string;
+  };
 }
 
 export type ProjectMedia =

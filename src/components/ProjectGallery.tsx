@@ -102,7 +102,7 @@ function ProjectGallery() {
       <motion.div ref={viewportRef} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={galleryEnterTransition} className="hidden h-dvh overflow-hidden md:block">
         <div ref={trackRef} className="flex h-full w-max items-center will-change-transform">
           {[0, 1].map((groupIndex) => (
-            <div key={groupIndex} ref={groupIndex === 0 ? groupRef : undefined} className="flex h-full items-center gap-6 pl-6">
+            <div key={groupIndex} ref={groupIndex === 0 ? groupRef : undefined} className="flex h-full items-center gap-10 pl-10">
               {projects.map((project) => (
                 <ProjectCard key={`${groupIndex}-${project.slug}`} project={project} />
               ))}

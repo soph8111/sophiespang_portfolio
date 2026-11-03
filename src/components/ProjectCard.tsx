@@ -7,10 +7,26 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ project, mobile = false }: ProjectCardProps) {
+  const sizeClasses = {
+    small: "h-[28dvh]",
+    medium: "h-[38dvh]",
+    large: "h-[45dvh]",
+  };
+
+  const renderCover = (mobile = false) => {
+    if (project.cover.type === "video") {
+      return (
+        <video src={project.cover.src} poster={project.cover.poster} autoPlay muted loop playsInline preload="auto" className={mobile ? "h-auto w-full object-cover" : `block w-auto max-w-none object-contain ${sizeClasses[project.gallery.size]}`} />
+      );
+    }
+
+    return <img src={project.cover.src} alt={project.cover.alt} className={mobile ? "h-auto w-full object-cover" : `block w-auto max-w-none object-contain ${sizeClasses[project.gallery.size]}`} />;
+  };
+
   if (mobile) {
     return (
       <Link to={`/${project.slug}`} className="block">
-        <img src={project.cover} alt={project.title} className="h-auto w-full" />
+        {renderCover(true)}
 
         <div className="mt-2 flex justify-between">
           <h2>{project.title}</h2>
@@ -19,12 +35,6 @@ function ProjectCard({ project, mobile = false }: ProjectCardProps) {
       </Link>
     );
   }
-
-  const sizeClasses = {
-    small: "h-[32dvh]",
-    medium: "h-[42dvh]",
-    large: "h-[52dvh]",
-  };
 
   return (
     <Link
@@ -36,7 +46,7 @@ function ProjectCard({ project, mobile = false }: ProjectCardProps) {
     >
       <article>
         <div className="relative overflow-hidden">
-          <img src={project.cover} alt={project.title} className={`block w-auto max-w-none object-contain ${sizeClasses[project.gallery.size]}`} />
+          {renderCover()}
 
           <div className="absolute inset-x-0 bottom-0 hidden translate-y-full items-center justify-between bg-foreground px-4 py-3 text-background transition-transform duration-300 ease-out group-hover:translate-y-0 md:flex">
             <h2 className="font-medium">{project.title}</h2>

@@ -17,7 +17,7 @@ function ProjectMedia({ item }: ProjectMediaProps) {
 
   return (
     <div className={`${layoutClass} aspect-video overflow-hidden`}>
-      <video src={item.src} poster={item.poster} controls playsInline className="h-full w-full object-cover" />
+      <video src={item.src} poster={item.poster} controls playsInline autoPlay muted className="h-full w-full object-cover" />
     </div>
   );
 }
