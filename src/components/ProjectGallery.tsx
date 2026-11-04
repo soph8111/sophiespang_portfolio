@@ -1,10 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { projects } from "../data/projects";
 import ProjectCard from "./ProjectCard";
 import { motion } from "motion/react";
 import { galleryEnterTransition } from "../utils/motion";
 
-function ProjectGallery() {
+interface ProjectGalleryProps {
+  onReady: () => void;
+  startAnimation: boolean;
+}
+
+function ProjectGallery({ onReady, startAnimation }: ProjectGalleryProps) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const groupRef = useRef<HTMLDivElement>(null);
@@ -14,6 +19,20 @@ function ProjectGallery() {
   const groupWidth = useRef(0);
 
   const animationFrame = useRef<number | null>(null);
+
+  // Track loaded project covers
+  const loadedProjects = useRef(new Set<string>());
+
+  const handleCoverReady = useCallback(
+    (slug: string) => {
+      loadedProjects.current.add(slug);
+
+      if (loadedProjects.current.size === projects.length) {
+        onReady();
+      }
+    },
+    [onReady],
+  );
 
   useEffect(() => {
     const viewport = viewportRef.current;
@@ -94,17 +113,17 @@ function ProjectGallery() {
       {/* Mobile */}
       <div className="flex flex-col gap-10 px-6 pb-32 pt-36 md:hidden">
         {projects.map((project) => (
-          <ProjectCard key={project.slug} project={project} mobile />
+          <ProjectCard key={project.slug} project={project} mobile onCoverReady={() => handleCoverReady(project.slug)} />
         ))}
       </div>
 
       {/* Desktop */}
-      <motion.div ref={viewportRef} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={galleryEnterTransition} className="hidden h-dvh overflow-hidden md:block">
+      <motion.div ref={viewportRef} initial={{ opacity: 0 }} animate={{ opacity: startAnimation ? 1 : 0 }} transition={galleryEnterTransition} className="hidden h-dvh overflow-hidden md:block">
         <div ref={trackRef} className="flex h-full w-max items-center will-change-transform">
           {[0, 1].map((groupIndex) => (
             <div key={groupIndex} ref={groupIndex === 0 ? groupRef : undefined} className="flex h-full items-center gap-10 pl-10">
               {projects.map((project) => (
-                <ProjectCard key={`${groupIndex}-${project.slug}`} project={project} />
+                <ProjectCard key={`${groupIndex}-${project.slug}`} project={project} onCoverReady={groupIndex === 0 ? () => handleCoverReady(project.slug) : undefined} />
               ))}
             </div>
           ))}

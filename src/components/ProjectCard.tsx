@@ -4,9 +4,10 @@ import type { Project } from "../types/project";
 interface ProjectCardProps {
   project: Project;
   mobile?: boolean;
+  onCoverReady?: () => void;
 }
 
-function ProjectCard({ project, mobile = false }: ProjectCardProps) {
+function ProjectCard({ project, mobile = false, onCoverReady }: ProjectCardProps) {
   const sizeClasses = {
     small: "h-[28dvh]",
     medium: "h-[38dvh]",
@@ -14,13 +15,13 @@ function ProjectCard({ project, mobile = false }: ProjectCardProps) {
   };
 
   const renderCover = (mobile = false) => {
+    const className = mobile ? "block h-auto w-full object-contain" : `block w-auto max-w-none object-contain ${sizeClasses[project.gallery.size]}`;
+
     if (project.cover.type === "video") {
-      return (
-        <video src={project.cover.src} poster={project.cover.poster} autoPlay muted loop playsInline preload="auto" className={mobile ? "h-auto w-full object-cover" : `block w-auto max-w-none object-contain ${sizeClasses[project.gallery.size]}`} />
-      );
+      return <video src={project.cover.src} poster={project.cover.poster} autoPlay muted loop playsInline preload="auto" onLoadedData={onCoverReady} onError={onCoverReady} className={className} />;
     }
 
-    return <img src={project.cover.src} alt={project.cover.alt} className={mobile ? "h-auto w-full object-cover" : `block w-auto max-w-none object-contain ${sizeClasses[project.gallery.size]}`} />;
+    return <img src={project.cover.src} alt={project.cover.alt} onLoad={onCoverReady} onError={onCoverReady} className={className} />;
   };
 
   if (mobile) {
